@@ -1,6 +1,0 @@
-export AZURE_SUBSCRIPTION_ID=1f537a4d-a40c-4a5e-8a2c-5de58a917191
-export AZURE_CLIENT_ID=b2467ed3-311f-474e-afaa-f71e6fdb372f
-export AZURE_SECRET=7bcae192-03c8-43e9-9620-7c641fd46cc0
-export AZURE_TENANT=c160a942-c869-429f-8a96-f8c8296d57db
-
-az login --service-principal --username b2467ed3-311f-474e-afaa-f71e6fdb372f --password 7bcae192-03c8-43e9-9620-7c641fd46cc0 --tenant c160a942-c869-429f-8a96-f8c8296d57db
