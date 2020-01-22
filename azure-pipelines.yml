@@ -26,3 +26,11 @@ stages:
           keepToken: false
           tokenPrefix: '__'
           tokenSuffix: '__'
+      - task: Ansible@0
+        inputs:
+          ansibleInterface: 'remoteMachine'
+          connectionOverSsh: 'ansiblemaster'
+          playbookSourceRemoteMachine: 'agentMachine'
+          playbookRootRemoteMachine: 'InfraAnsible'
+          playbookPathLinkedArtifactOnRemoteMachine: 'infra.yml'
+          inventoriesRemoteMachine: 'noInventory'
