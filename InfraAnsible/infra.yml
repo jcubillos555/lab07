@@ -3,28 +3,29 @@
   gather_facts: no
 
   vars:
-      rgr: __rgr__
-      vmnameansible: __vmnameansible__
-      vmnamelab07: __vmnamelab07__
-      vmnamebdlab07: __vmnamebdlab07__
-      dnsansiblelab07: __dnsansiblelab07__
-      dnsweblab07: __dnsweblab07__
-      dnsbdlab07: __dnsbdlab07__
-      userlab07: __userlab07__
-      sizevmlab07: __sizevmlab07__
-      offerlab07: __offerlab07__
-      publisherlab0: __publisherlab0__
-      skulab07: __skulab07__
-      tagansiblelab07: __tagansiblelab07__
-      tagweblab07: __tagweblab07__
-      tagbdlab07: __tagbdlab07__
-      virtualnetworklab07: __virtualnetworklab07__
-      subnetlab07: __subnetlab07__
-      nsglab07: __nsglab07__
-      locationlab07: __locationlab07__
-      autenthicationmethod: __autenthicationmethod__
-      llavepublicalab07: __llavepublicalab07__
-      #llavepublicalab07: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOcUiCw6qYodwRT6FcabSr6BF+UJQ5WCvOz4v9wulxV2Z9aDmKBMTKM0537n2umdY3++gMLjOEEuG4RYhuH1rX5mdDQvm5FP+bkfrXBUHTntJk1C91/FOvL6LpLoqKf5eZ01hFPzm2F+SdGdRXTWhDLOfyGF/kQNwpE+wrPRCdfpRU0FORA/q49OvfugorYXcYvMnvByftDzZVxiBQ+3c7bQR13ZhizM7pPAgGmBivpPT27XPkBViSFDVAR7CD6KD1r1BalyEgRNadWNp/BBFo9dAZwWd6tBwPC6ONgoF5qyvbot6rNZ+mprldb4DL4ZGpT8YFpoV2c+aPI8jnreCj jcubillos555@ansiblelab07
+      rgr: lab07
+      vmnameansible: ansiblelab07
+      vmnamelab07: weblab07
+      vmname2lab07: web2lab07
+      vmnamebdlab07: bdlab07
+      dnsansiblelab07: ansiblelab07
+      dnsweblab07: weblab07
+      dnsweb2lab07: web2lab07
+      dnsbdlab07: bdlab07
+      userlab07: jcubillos555
+      sizevmlab07: Standard_B1ms
+      offerlab07: UbuntuServer
+      publisherlab0: Canonical
+      skulab07: 18.04-LTS
+      tagansiblelab07: ansiblelab07
+      tagweblab07: weblab07
+      tagbdlab07: bdlab07
+      virtualnetworklab07: MyVNlab07
+      subnetlab07: MySubnetlab07
+      nsglab07: MyNSGlab07
+      locationlab07: westus
+      autenthicationmethod: sshPublicKey
+      llavepublicalab07: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOcUiCw6qYodwRT6FcabSr6BF+UJQ5WCvOz4v9wulxV2Z9aDmKBMTKM0537n2umdY3++gMLjOEEuG4RYhuH1rX5mdDQvm5FP+bkfrXBUHTntJk1C91/FOvL6LpLoqKf5eZ01hFPzm2F+SdGdRXTWhDLOfyGF/kQNwpE+wrPRCdfpRU0FORA/q49OvfugorYXcYvMnvByftDzZVxiBQ+3c7bQR13ZhizM7pPAgGmBivpPT27XPkBViSFDVAR7CD6KD1r1BalyEgRNadWNp/BBFo9dAZwWd6tBwPC6ONgoF5qyvbot6rNZ+mprldb4DL4ZGpT8YFpoV2c+aPI8jnreCj jcubillos555@ansiblelab07
 
   tasks:
   - name: Create resource group
@@ -32,77 +33,77 @@
       name: "{{ rgr }}"
       location: "{{ locationlab07 }}"
 
-#  - name: Deploy VM Ansible
-#    azure_rm_deployment:
-#      resource_group: "{{ rgr }}"
-#      name: Deploylab07
-#      parameters:
-#        vmName:
-#          value: "{{ vmnameansible }}"
-#        adminUsername:
-#          value: "{{ userlab07 }}"
-#        authenticationType:
-#          value: password
-#        adminPasswordOrKey:
-#          value: Proviteq.1999
-#        ubuntuOSVersion:
-#          value: "{{ skulab07 }}"
-#        location:
-#           value: "{{ locationlab07 }}"
-#        vmSize:
-#          value: "{{ sizevmlab07 }}"
-#        virtualNetworkName:
-#          value: "{{ virtualnetworklab07 }}"
-#        subnetName:
-#          value: "{{ subnetlab07 }}"   
-#        networkSecurityGroupName:
-#          value: "{{ nsglab07 }}" 
-#        dnsLabelPrefix:
-#          value: "{{ dnsansiblelab07 }}"
-#      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
-#    register: azure
+  - name: Deploy VM Ansible
+    azure_rm_deployment:
+      resource_group: "{{ rgr }}"
+      name: Deploylab07
+      parameters:
+        vmName:
+          value: "{{ vmnameansible }}"
+        adminUsername:
+          value: "{{ userlab07 }}"
+        authenticationType:
+          value: password
+        adminPasswordOrKey:
+          value: Proviteq.1999
+        ubuntuOSVersion:
+          value: "{{ skulab07 }}"
+        location:
+           value: "{{ locationlab07 }}"
+        vmSize:
+          value: "{{ sizevmlab07 }}"
+        virtualNetworkName:
+          value: "{{ virtualnetworklab07 }}"
+        subnetName:
+          value: "{{ subnetlab07 }}"   
+        networkSecurityGroupName:
+          value: "{{ nsglab07 }}" 
+        dnsLabelPrefix:
+          value: "{{ dnsansiblelab07 }}"
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    register: azure
 
-#  - name: Tags VM
-#    azure_rm_virtualmachine:
-#      resource_group: "{{ rgr }}"
-#      name: "{{ vmnameansible }}"
-#      append_tags: True
-#      tags:
-#        env: "{{ tagansiblelab07 }}" 
+  - name: Tags VM
+    azure_rm_virtualmachine:
+      resource_group: "{{ rgr }}"
+      name: "{{ vmnameansible }}"
+      append_tags: True
+      tags:
+        env: "{{ tagansiblelab07 }}" 
 
-#  - name: VMExtension Install Ansible
-#    azure_rm_virtualmachineextension:
-#      name: myvmextension
-#      location: "{{ locationlab07 }}"
-#      resource_group: "{{ rgr }}"
-#      virtual_machine_name: "{{ vmnameansible }}"
-#      publisher: Microsoft.OSTCExtensions
-#      virtual_machine_extension_type: CustomScriptForLinux
-#      type_handler_version: "1.4"
-#      settings:
-#        {
-#            "fileUris":[ "https://raw.githubusercontent.com/Microsoft/azuredevopslabs/master/labs/vstsextend/ansible/armtemplate/install_ansible.sh"],
-#            "commandToExecute": "sh install_ansible.sh"
-#       }
-#      auto_upgrade_minor_version: true
+  - name: VMExtension Install Ansible
+    azure_rm_virtualmachineextension:
+      name: myvmextension
+      location: "{{ locationlab07 }}"
+      resource_group: "{{ rgr }}"
+      virtual_machine_name: "{{ vmnameansible }}"
+      publisher: Microsoft.OSTCExtensions
+      virtual_machine_extension_type: CustomScriptForLinux
+      type_handler_version: "1.4"
+      settings:
+        {
+            "fileUris":[ "https://raw.githubusercontent.com/Microsoft/azuredevopslabs/master/labs/vstsextend/ansible/armtemplate/install_ansible.sh"],
+            "commandToExecute": "sh install_ansible.sh"
+       }
+      auto_upgrade_minor_version: true
 
-#  - name: VMExtension Permisos Ansible
-#    azure_rm_virtualmachineextension:
-#      name: myvmextension
-#      location: "{{ locationlab07 }}"
-#      resource_group: "{{ rgr }}"
-#      virtual_machine_name: "{{ vmnameansible }}"
-#      publisher: Microsoft.OSTCExtensions
-#      virtual_machine_extension_type: CustomScriptForLinux
-#      type_handler_version: "1.4"
-#      settings:
-#        {
-#            "fileUris":[ "https://sclab07.blob.core.windows.net/ansiblepermisos/ansiblepermisos.sh"],
-#            "commandToExecute": "sh ansiblepermisos.sh"
-#       }
-#      auto_upgrade_minor_version: true
+  - name: VMExtension Permisos Ansible
+    azure_rm_virtualmachineextension:
+      name: myvmextension
+      location: "{{ locationlab07 }}"
+      resource_group: "{{ rgr }}"
+      virtual_machine_name: "{{ vmnameansible }}"
+      publisher: Microsoft.OSTCExtensions
+      virtual_machine_extension_type: CustomScriptForLinux
+      type_handler_version: "1.4"
+      settings:
+        {
+            "fileUris":[ "https://sclab07.blob.core.windows.net/ansiblepermisos/ansiblepermisos.sh"],
+            "commandToExecute": "sh ansiblepermisos.sh"
+       }
+      auto_upgrade_minor_version: true
 
-  - name: Deploy VM Azure Apache
+  - name: Deploy VM Azure Apache1
     azure_rm_deployment:
       resource_group: "{{ rgr }}"
       name: Deploylab07
@@ -136,6 +137,44 @@
     azure_rm_virtualmachine:
       resource_group: "{{ rgr }}"
       name: "{{ vmnamelab07 }}"
+      append_tags: True
+      tags:
+        env: "{{ tagweblab07 }}" 
+
+  - name: Deploy VM Azure Apache2
+    azure_rm_deployment:
+      resource_group: "{{ rgr }}"
+      name: Deploylab07
+      parameters:
+        vmName:
+          value: "{{ vmname2lab07 }}"
+        adminUsername:
+          value: "{{ userlab07 }}"
+        authenticationType:
+          value: "{{ autenthicationmethod }}"
+        adminPasswordOrKey:
+          value: "{{ llavepublicalab07 }}"
+        ubuntuOSVersion:
+          value: "{{ skulab07 }}"
+        location:
+           value: "{{ locationlab07 }}"
+        vmSize:
+          value: "{{ sizevmlab07 }}"
+        virtualNetworkName:
+          value: "{{ virtualnetworklab07 }}"
+        subnetName:
+          value: "{{ subnetlab07 }}"   
+        networkSecurityGroupName:
+          value: "{{ nsglab07 }}" 
+        dnsLabelPrefix:
+          value: "{{ dnsweb2lab07 }}"
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    register: azure
+
+  - name: Tags VM Apache
+    azure_rm_virtualmachine:
+      resource_group: "{{ rgr }}"
+      name: "{{ vmname2lab07 }}"
       append_tags: True
       tags:
         env: "{{ tagweblab07 }}" 
