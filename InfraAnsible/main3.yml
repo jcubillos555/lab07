@@ -1,0 +1,10 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - include_role:
+        name: installmysql
+    - include_role:
+        name: confmysql
+    - include_role:
+        name: importbd

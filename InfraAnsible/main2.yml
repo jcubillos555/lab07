@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - include_role:
+        name: webapache
+    - include_role:
+        name: copyfiles
