@@ -3,27 +3,28 @@
   gather_facts: no
 
   vars:
-      rgr: lab07
-      vmnameansible: ansiblelab07
-      vmnamelab07: weblab07
-      vmnamebdlab07: bdlab07
-      dnsansiblelab07: ansiblelab07
-      dnsweblab07: weblab07
-      dnsbdlab07: bdlab07
-      userlab07: jcubillos555
-      sizevmlab07: Standard_B1ms
-      offerlab07: UbuntuServer
-      publisherlab0: Canonical
-      skulab07: 18.04-LTS
-      tagansiblelab07: ansiblelab07
-      tagweblab07: weblab07
-      tagbdlab07: bdlab07
-      virtualnetworklab07: MyVNlab07
-      subnetlab07: MySubnetlab07
-      nsglab07: MyNSGlab07
-      locationlab07: westus
-      autenthicationmethod: sshPublicKey
-      llavepublicalab07: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOcUiCw6qYodwRT6FcabSr6BF+UJQ5WCvOz4v9wulxV2Z9aDmKBMTKM0537n2umdY3++gMLjOEEuG4RYhuH1rX5mdDQvm5FP+bkfrXBUHTntJk1C91/FOvL6LpLoqKf5eZ01hFPzm2F+SdGdRXTWhDLOfyGF/kQNwpE+wrPRCdfpRU0FORA/q49OvfugorYXcYvMnvByftDzZVxiBQ+3c7bQR13ZhizM7pPAgGmBivpPT27XPkBViSFDVAR7CD6KD1r1BalyEgRNadWNp/BBFo9dAZwWd6tBwPC6ONgoF5qyvbot6rNZ+mprldb4DL4ZGpT8YFpoV2c+aPI8jnreCj jcubillos555@ansiblelab07
+      rgr: __rgr__
+      vmnameansible: __vmnameansible__
+      vmnamelab07: __vmnamelab07__
+      vmnamebdlab07: __vmnamebdlab07__
+      dnsansiblelab07: __dnsansiblelab07__
+      dnsweblab07: __dnsweblab07__
+      dnsbdlab07: __dnsbdlab07__
+      userlab07: __userlab07__
+      sizevmlab07: __sizevmlab07__
+      offerlab07: __offerlab07__
+      publisherlab0: __publisherlab0__
+      skulab07: __skulab07__
+      tagansiblelab07: __tagansiblelab07__
+      tagweblab07: __tagweblab07__
+      tagbdlab07: __tagbdlab07e__
+      virtualnetworklab07: __virtualnetworklab07__
+      subnetlab07: __subnetlab07__
+      nsglab07: __nsglab07__
+      locationlab07: __locationlab07__
+      autenthicationmethod: __autenthicationmethod__
+      llavepublicalab07: __llavepublicalab07__
+      #llavepublicalab07: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOcUiCw6qYodwRT6FcabSr6BF+UJQ5WCvOz4v9wulxV2Z9aDmKBMTKM0537n2umdY3++gMLjOEEuG4RYhuH1rX5mdDQvm5FP+bkfrXBUHTntJk1C91/FOvL6LpLoqKf5eZ01hFPzm2F+SdGdRXTWhDLOfyGF/kQNwpE+wrPRCdfpRU0FORA/q49OvfugorYXcYvMnvByftDzZVxiBQ+3c7bQR13ZhizM7pPAgGmBivpPT27XPkBViSFDVAR7CD6KD1r1BalyEgRNadWNp/BBFo9dAZwWd6tBwPC6ONgoF5qyvbot6rNZ+mprldb4DL4ZGpT8YFpoV2c+aPI8jnreCj jcubillos555@ansiblelab07
 
   tasks:
   - name: Create resource group
