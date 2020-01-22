@@ -1,0 +1,5 @@
+[webservers]
+weblab07.westus.cloudapp.azure.com ansible_connection=ssh
+
+[bds]
+bd1lab06.eastus.cloudapp.azure.com ansible_connection=ssh

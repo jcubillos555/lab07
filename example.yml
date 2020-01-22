@@ -1,0 +1,32 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: lab08
+      location: westus
+  
+  - name: Deploy VM Azure
+    azure_rm_deployment:
+      resource_group: lab08
+      name: Deploylab07
+      parameters:
+        projectName:
+          value: jaime
+        adminUsername:
+          value: jcubillos555
+        adminPublicKey:
+          value: Proviteq.1999  
+        location:
+           value: westus
+#        vmSize:
+#          value: Standard_B1ms
+#        vmName:
+#          value: Myvmlab07
+#        sshKeyData:
+#            #value: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDX6qIy4y6Y+rsKi7K8R+sCyQulxecyVx7JLtHkQ0Y2OrvkK1Dzj84v5V9/Kz9zjnG/kFmnKKTRwhPEEu0WjQs+uKz0AeggeQ35cWYfvpwxSxGZYB7ikHHoPZ69d5M4kNBOgCbYFGz/rTMdMgfNkzaBCcwgPqU3KZqqXwXm2t4HZ8KeN2aBa1iqfgl8NLmYgmnmq5F/jp+CRNmrjyccz0Yav6h62bb44lQd7CQfDnVw7DOFNd3fzDDQozwR8S6EB5PjvP4ILaW2gKzdpGj8F2oqib+LrO8kdS8xbNXwtLa0gf1IbYkUayI0yLXFS/3zxnq+XMXKTEL18KZzcoUNTMUh jcubillos555@CO1262396W1
+#          value: ssh-rsa
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-sshkey/azuredeploy.json'
+    register: azure

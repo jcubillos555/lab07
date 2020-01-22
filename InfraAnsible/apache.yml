@@ -1,0 +1,106 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+      rgr: lab07
+      vmnamelab07: weblab07
+      vmnamebdlab07: bdlab07
+      dnsweblab07: weblab07
+      dnsbdlab07: bdlab07
+      userlab07: jcubillos555
+      sizevmlab07: Standard_B1ms
+      offerlab07: UbuntuServer
+      publisherlab0: Canonical
+      skulab07: 18.04-LTS
+      taglab07: taglab07
+      virtualnetworklab07: MyVNlab07
+      subnetlab07: MySubnetlab07
+      nsglab07: MyNSGlab07
+      locationlab07: westus
+
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: "{{ rgr }}"
+      location: "{{ locationlab07 }}"
+  
+  - name: Deploy VM Azure Apache
+    azure_rm_deployment:
+      resource_group: "{{ rgr }}"
+      name: Deploylab07
+      parameters:
+        vmName:
+          value: "{{ vmnamelab07 }}"
+        adminUsername:
+          value: "{{ userlab07 }}"
+        authenticationType:
+          value: password
+        adminPasswordOrKey:
+          value: Proviteq.1999
+        ubuntuOSVersion:
+          value: "{{ skulab07 }}"
+        location:
+           value: "{{ locationlab07 }}"
+        vmSize:
+          value: "{{ sizevmlab07 }}"
+        virtualNetworkName:
+          value: "{{ virtualnetworklab07 }}"
+        subnetName:
+          value: "{{ subnetlab07 }}"   
+        networkSecurityGroupName:
+          value: "{{ nsglab07 }}" 
+        dnsLabelPrefix:
+          value: "{{ dnsweblab07 }}"
+        #sshKeyData:
+        #  value: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDX6qIy4y6Y+rsKi7K8R+sCyQulxecyVx7JLtHkQ0Y2OrvkK1Dzj84v5V9/Kz9zjnG/kFmnKKTRwhPEEu0WjQs+uKz0AeggeQ35cWYfvpwxSxGZYB7ikHHoPZ69d5M4kNBOgCbYFGz/rTMdMgfNkzaBCcwgPqU3KZqqXwXm2t4HZ8KeN2aBa1iqfgl8NLmYgmnmq5F/jp+CRNmrjyccz0Yav6h62bb44lQd7CQfDnVw7DOFNd3fzDDQozwR8S6EB5PjvP4ILaW2gKzdpGj8F2oqib+LrO8kdS8xbNXwtLa0gf1IbYkUayI0yLXFS/3zxnq+XMXKTEL18KZzcoUNTMUh jcubillos555@CO1262396W1
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    register: azure
+
+  - name: Tags VM
+    azure_rm_virtualmachine:
+      resource_group: "{{ rgr }}"
+      name: "{{ vmnamelab07 }}"
+      append_tags: True
+      tags:
+        env: "{{ taglab07 }}" 
+
+  - name: Deploy VM Azure Mysql
+    azure_rm_deployment:
+      resource_group: "{{ rgr }}"
+      name: Deploylab07
+      parameters:
+        vmName:
+          value: "{{ vmnamebdlab07 }}"
+        adminUsername:
+          value: "{{ userlab07 }}"
+        authenticationType:
+          value: password
+        adminPasswordOrKey:
+          value: Proviteq.1999
+        ubuntuOSVersion:
+          value: "{{ skulab07 }}"
+        location:
+           value: "{{ locationlab07 }}"
+        vmSize:
+          value: "{{ sizevmlab07 }}"
+        virtualNetworkName:
+          value: "{{ virtualnetworklab07 }}"
+        subnetName:
+          value: "{{ subnetlab07 }}"   
+        networkSecurityGroupName:
+          value: "{{ nsglab07 }}" 
+        dnsLabelPrefix:
+          value: "{{ dnsbdlab07 }}"
+        #sshKeyData:
+        #  value: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDX6qIy4y6Y+rsKi7K8R+sCyQulxecyVx7JLtHkQ0Y2OrvkK1Dzj84v5V9/Kz9zjnG/kFmnKKTRwhPEEu0WjQs+uKz0AeggeQ35cWYfvpwxSxGZYB7ikHHoPZ69d5M4kNBOgCbYFGz/rTMdMgfNkzaBCcwgPqU3KZqqXwXm2t4HZ8KeN2aBa1iqfgl8NLmYgmnmq5F/jp+CRNmrjyccz0Yav6h62bb44lQd7CQfDnVw7DOFNd3fzDDQozwR8S6EB5PjvP4ILaW2gKzdpGj8F2oqib+LrO8kdS8xbNXwtLa0gf1IbYkUayI0yLXFS/3zxnq+XMXKTEL18KZzcoUNTMUh jcubillos555@CO1262396W1
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    register: azure
+
+  - name: Tags VM
+    azure_rm_virtualmachine:
+      resource_group: "{{ rgr }}"
+      name: "{{ vmnamelab07 }}"
+      append_tags: True
+      tags:
+        env: "{{ taglab07 }}" 

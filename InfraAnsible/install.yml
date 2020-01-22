@@ -1,0 +1,44 @@
+- hosts: [webservers]
+  connection: local
+  remote_user: jcubillos555
+  become: yes
+  become_method: sudo
+  tasks:
+
+#  - name: Actualizar know_hosts
+#    shell: "ssh-keyscan -H [bds] >> ~/.ssh/known_hosts"
+
+  - name: Install phyton-apt
+    apt:
+      name: python-apt
+      state: latest
+
+  - name: Install Apache, php y las librerias
+    apt:
+      name: apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql
+      state: latest
+          
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/index.php
+      dest: /var/www/html
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/insert.php
+      dest: /var/www/html
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/db_connection.php
+      dest: /var/www/html         
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/delete.php
+      dest: /var/www/html
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/update.php
+      dest: /var/www/html
+  - name: Copy files to Apache
+    copy:
+      src: /home/jcubillos555/style.css
+      dest: /var/www/html           

@@ -1,0 +1,83 @@
+- name: Create Azure Apache VM1
+  hosts: localhost
+  connection: local
+    
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: lab06
+      location: eastus
+  
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: lab06
+      name: myVnet
+      address_prefixes: "10.0.0.0/16"
+  
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: lab06
+      name: mySubnet
+      address_prefix: "10.0.1.0/24"
+      virtual_network: myVnet
+  
+  - name: Create public IP address BD01
+    azure_rm_publicipaddress:
+      resource_group: lab06
+      allocation_method: Dynamic
+      domain_name_label: bd1lab06
+      name: myPublicIPBD1
+  
+  - name: Create an availability set for managed disk vm
+    azure_rm_availabilityset:
+      name: avs-lab06
+      resource_group: lab06
+      platform_update_domain_count: 5
+      platform_fault_domain_count: 2
+      sku: Aligned            
+  
+  - name: Create Network Security Group
+    azure_rm_securitygroup:
+      resource_group: lab06
+      name: myNetworkSecurityGroup
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+  
+  - name: Create virtual network interface card bd01
+    azure_rm_networkinterface:
+      resource_group: lab06
+      name: myNICBD01
+      virtual_network_name: myVnet
+      subnet_name: mySubnet
+      ip_configurations:
+        - name: ipconfig1
+          public_ip_address_name: myPublicIPBD1
+          primary: True
+      security_group: myNetworkSecurityGroup  
+  
+  - name: Create VM BD01
+    azure_rm_virtualmachine:
+      resource_group: lab06
+      name: myBD01
+      vm_size: Standard_B1ms
+      admin_username: jcubillos555
+      admin_password: Proviteq.1999
+      ssh_password_enabled: false
+      ssh_public_keys:
+        - path: "/home/jcubillos555/.ssh/authorized_keys"
+          key_data: "{{lookup('file', '~/.ssh/id_rsa.pub') }}"
+      append_tags: True
+      tags:
+        env: "BDlab06"
+      network_interfaces: myNICBD01
+      managed_disk_type: Standard_LRS
+      image:
+        offer: UbuntuServer
+        publisher: Canonical
+        sku: 18.04-LTS
+        version: latest   

@@ -1,0 +1,7 @@
+  - name: Copy users.sql
+    copy:
+      src: /tmp/users.sql
+      dest: /tmp
+
+  - name: Restore database
+    shell: mysql < /tmp/users.sql

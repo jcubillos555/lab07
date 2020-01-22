@@ -1,0 +1,8 @@
+  - name: Enable Remote access
+    lineinfile:
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      regexp: 'bind-address'
+      line: bind-address = 0.0.0.0
+
+  - name: Restart Mysql
+    shell: /etc/init.d/mysql restart
