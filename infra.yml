@@ -6,9 +6,11 @@
       rgr: lab07
       vmnameansible: ansiblelab07
       vmnamelab07: weblab07
+      vmname2lab07: web2lab07
       vmnamebdlab07: bdlab07
       dnsansiblelab07: ansiblelab07
       dnsweblab07: weblab07
+      dnsweb2lab07: web2lab07
       dnsbdlab07: bdlab07
       userlab07: jcubillos555
       sizevmlab07: Standard_B1ms
@@ -135,6 +137,44 @@
     azure_rm_virtualmachine:
       resource_group: "{{ rgr }}"
       name: "{{ vmnamelab07 }}"
+      append_tags: True
+      tags:
+        env: "{{ tagweblab07 }}" 
+
+  - name: Deploy VM Azure Apache2
+    azure_rm_deployment:
+      resource_group: "{{ rgr }}"
+      name: Deploylab07
+      parameters:
+        vmName:
+          value: "{{ vmname2lab07 }}"
+        adminUsername:
+          value: "{{ userlab07 }}"
+        authenticationType:
+          value: "{{ autenthicationmethod }}"
+        adminPasswordOrKey:
+          value: "{{ llavepublicalab07 }}"
+        ubuntuOSVersion:
+          value: "{{ skulab07 }}"
+        location:
+           value: "{{ locationlab07 }}"
+        vmSize:
+          value: "{{ sizevmlab07 }}"
+        virtualNetworkName:
+          value: "{{ virtualnetworklab07 }}"
+        subnetName:
+          value: "{{ subnetlab07 }}"   
+        networkSecurityGroupName:
+          value: "{{ nsglab07 }}" 
+        dnsLabelPrefix:
+          value: "{{ dnsweb2lab07 }}"
+      template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+    register: azure
+
+  - name: Tags VM Apache
+    azure_rm_virtualmachine:
+      resource_group: "{{ rgr }}"
+      name: "{{ vmname2lab07 }}"
       append_tags: True
       tags:
         env: "{{ tagweblab07 }}" 
