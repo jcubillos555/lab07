@@ -1,5 +1,5 @@
 <?php
-echo "<center>Lab07 - Ansible Commit10: "; echo gethostname(); echo "</center>";
+echo "<center>Lab07 - Ansible Commit23: "; echo gethostname(); echo "</center>";
 require 'db_connection.php';
 // function for getting data from database
 function get_all_data($conn){
