@@ -101,7 +101,7 @@
        }
       auto_upgrade_minor_version: true
 
-  - name: Deploy VM Azure Apache
+  - name: Deploy VM Azure Apache1
     azure_rm_deployment:
       resource_group: "{{ rgr }}"
       name: Deploylab07
