@@ -4,28 +4,25 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- pac
 
 pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Deploy
-  displayName: Deploy Infra VM Azure
+- stage: Deploy Infra
+  displayName: Deploy Infra Ansible
   jobs:
-  - job: ARMTemplate
-    displayName: ARM Tamplate
+  - job: DeployInfraAnsible 
+    displayName: DeployInfraAnsibleARM
     steps:
-    - script: echo "Hola Jaimito"
-    - task: AzureCLI@2
-      inputs:
-        azureSubscription: 'Visual Jaime(1f537a4d-a40c-4a5e-8a2c-5de58a917191)'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az group create --name rgpac --location eastus
-          
-          az storage account create --resource-group rgpac --name scpac  --sku Standard_LRS
-          
-          az storage container create --account-name scpac --name pruebapac
-
+      - task: replacetokens@3
+        inputs:
+          rootDirectory: 'InfraAnsible'
+          targetFiles: '**/*.yml'
+          encoding: 'auto'
+          writeBOM: true
+          actionOnMissing: 'warn'
+          keepToken: false
+          tokenPrefix: '__'
+          tokenSuffix: '__'
