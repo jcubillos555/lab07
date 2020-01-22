@@ -1,3 +1,4 @@
+#Deploy Infraestructura base
 - hosts: localhost
   connection: local
   gather_facts: no
@@ -11,7 +12,7 @@
       dnsansiblelab07: __dnsansiblelab07__
       dnsweblab07: __dnsweblab07__
       dnsweb2lab07: __dnsweb2lab07__
-      dnsbdlab07: __dnsbdlab07:__
+      dnsbdlab07: __dnsbdlab07__
       userlab07: __userlab07__
       sizevmlab07: __sizevmlab07__
       offerlab07: __offerlab07__
