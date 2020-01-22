@@ -141,7 +141,7 @@
       tags:
         env: "{{ tagweblab07 }}" 
 
-  - name: Deploy VM Azure Apache2
+  - name: Deploy VM Azure Apache2 Prueba Inventario Dinamico
     azure_rm_deployment:
       resource_group: "{{ rgr }}"
       name: Deploylab07
